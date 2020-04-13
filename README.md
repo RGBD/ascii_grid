@@ -1,39 +1,44 @@
-# AsciiGrid
+## CODE
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ascii_grid`. To experiment with that code, run `bin/console` for an interactive prompt.
+Разработать конвертор из CSV файла в таблицу из ASCII символов.
+Первая строка файла задает типы столбцов.
+Следующие строки - сами данные ( разделитель - точка с запятой ).
 
-TODO: Delete this and the text above, and describe your gem
+Типы:
+  * int - целое число ( выравнивание вправо )
+  * string - строка, строковые данные бьются на слова и выводятся в столбик.
+  * money - денежная единица, форматирование 2 занака после запятой и разделитель разрядов - пробел.
 
-## Installation
+Исходные данные ( как пример ):
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'ascii_grid'
+```csv
+int;string;money
+1;aaa bbb ccc;1000.33
+5;aaaa bbb;0.001
+13;aa bbbb;10000.00
 ```
 
-And then execute:
+На выходе скрипта:
 
-    $ bundle
+```txt
++-----------------+
+| 1|aaa | 1 000,33|
+|  |bbb |         |
+|  |ccc |         |
++--+----+---------+
+| 5|aaaa|     0,01|
+|  |bbb |         |
++--+----+---------+
+|13|aa  |10 000,00|
+|  |bbbb|         |
++--+----+---------+
+```
 
-Or install it yourself as:
+Требования:
+  1. Использовать ООП
+  2. Не использовать стандартных библиотек и функций для форматирования вывода
 
-    $ gem install ascii_grid
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ascii_grid.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Критерии оценки:
+  1. Читабельность кода
+  2. Иерархия классов
+  3. Оптимальное использование ресурсов
