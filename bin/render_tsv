@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+
+require "ascii_grid"
+require "csv"
+
+def main
+  unless ARGV.size == 1
+    puts "usage: #{$PROGRAM_NAME} <tsv_file>"
+    exit 1
+  end
+
+  path = ARGV[0]
+  data = CSV.read(path, col_sep: "\t").to_a
+  puts AsciiGrid::Render.new.call(rows: data)
+end
+
+main if $PROGRAM_NAME == __FILE__
