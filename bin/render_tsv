@@ -6,13 +6,14 @@ require "ascii_grid"
 require "csv"
 
 def main
-  unless ARGV.size == 1
-    puts "usage: #{$PROGRAM_NAME} <tsv_file>"
+  unless (1..2).include? ARGV.size
+    puts "usage: #{$PROGRAM_NAME} <tsv_file> [separator]"
     exit 1
   end
 
   path = ARGV[0]
-  data = CSV.read(path, col_sep: "\t").to_a
+  col_sep = ARGV[1] || "\t"
+  data = CSV.read(path, col_sep: col_sep).to_a.map { |row| row.map { |x| AsciiGrid::Cell::Base.new(x) } }
   puts AsciiGrid::Render.new.call(rows: data)
 end
 
