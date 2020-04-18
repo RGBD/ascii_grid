@@ -11,4 +11,16 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  module Helpers
+    def fixture_path(path)
+      File.join(File.dirname(__FILE__), 'fixtures', path)
+    end
+
+    def read_fixture(path)
+      File.read(fixture_path(path))
+    end
+  end
+
+  config.include Helpers
 end
