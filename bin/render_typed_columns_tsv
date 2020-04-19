@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+
+require "ascii_grid"
+require "csv"
+
+def main
+  unless (1..2).include? ARGV.size
+    puts "usage: #{$PROGRAM_NAME} <tsv_file_with_headers> [separator]"
+    exit 1
+  end
+
+  path = ARGV[0]
+  col_sep = ARGV[1] || "\t"
+  column_types, *rows = CSV.read(path, col_sep: col_sep).to_a
+  type_map = {
+    'int' => AsciiGrid::Cell::IntegerCell,
+    'string' => AsciiGrid::Cell::WordColumnCell,
+    'money' => AsciiGrid::Cell::MoneyCell,
+  }
+  column_types = column_types.map { |x| type_map.fetch(x) }
+  puts AsciiGrid::RenderTypedColumns.new.call(rows: rows, column_types: column_types)
+end
+
+main if $PROGRAM_NAME == __FILE__
