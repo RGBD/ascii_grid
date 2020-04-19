@@ -38,7 +38,7 @@ module AsciiGrid
 
     class MoneyCell < RightAlignCell
       def initialize(string)
-        @strings = [Helpers::format_number(string, delimiter: ' ', precision: 2)]
+        @strings = [Helpers::format_number(string, delimiter: ' ', fraction_delimiter: ',', precision: 2)]
       end
     end
   end

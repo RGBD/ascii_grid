@@ -53,7 +53,7 @@ RSpec.describe AsciiGrid::Cell do
       cell = described_class.new(word)
       expect(cell.width).to eq(8)
       expect(cell.height).to eq(1)
-      expect(cell.line(0, 10)).to eq('  1 234.57')
+      expect(cell.line(0, 10)).to eq('  1 234,57')
       expect(cell.line(1, 10)).to eq('          ')
     end
   end

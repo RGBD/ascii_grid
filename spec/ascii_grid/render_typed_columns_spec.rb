@@ -13,10 +13,10 @@ RSpec.describe AsciiGrid::RenderTypedColumns do
   let(:expected_result) do
     <<~TABLE
       +------+--------+--------------+
-      |foobar|      12|-24 683 297.53|
+      |foobar|      12|-24 683 297,53|
       |baz   |        |              |
       +------+--------+--------------+
-      |ha    |12345678|        153.00|
+      |ha    |12345678|        153,00|
       |ha    |        |              |
       +------+--------+--------------+
     TABLE
