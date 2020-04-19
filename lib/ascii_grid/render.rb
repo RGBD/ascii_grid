@@ -19,7 +19,7 @@ module AsciiGrid
     end
 
     def build_row(row, column_widths, line)
-      row.zip(column_widths).map { |value, width| '|' + value.line(line).ljust(width, ' ') }.join + '|'
+      row.zip(column_widths).map { |value, width| '|' + value.line(line, width).ljust(width, ' ') }.join + '|'
     end
 
     def build_row_separator(column_widths)
