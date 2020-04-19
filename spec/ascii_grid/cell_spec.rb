@@ -36,6 +36,17 @@ RSpec.describe AsciiGrid::Cell do
     end
   end
 
+  describe described_class::IntegerCell do
+    it 'works' do
+      word = '-12.48'
+      cell = described_class.new(word)
+      expect(cell.width).to eq(3)
+      expect(cell.height).to eq(1)
+      expect(cell.line(0, 10)).to eq('       -12')
+      expect(cell.line(1, 10)).to eq('          ')
+    end
+  end
+
   describe described_class::MoneyCell do
     it 'works' do
       word = '+1234.567'

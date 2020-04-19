@@ -30,6 +30,12 @@ module AsciiGrid
       end
     end
 
+    class IntegerCell < RightAlignCell
+      def initialize(string)
+        @strings = [string.to_i(10).to_s]
+      end
+    end
+
     class MoneyCell < RightAlignCell
       def initialize(string)
         @strings = [Helpers::format_number(string, delimiter: ' ', precision: 2)]
